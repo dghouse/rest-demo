@@ -20,7 +20,7 @@ public class UserController implements Controller<UserDTO>{
 
     /**
      *
-     * @param userService
+     * @param userService The service used to access {@link UserDTO} objects in the service layer.
      */
     public UserController(UserService userService) {
         this.userService = userService;
@@ -76,7 +76,7 @@ public class UserController implements Controller<UserDTO>{
      * @throws DataNotFoundException thrown when the give object is not found.
      */
     @DeleteMapping("/{id}")
-    public void delete(UUID id) throws DataNotFoundException {
+    public void delete(@PathVariable("id") UUID id) throws DataNotFoundException {
         userService.delete(id);
     }
 }

@@ -9,10 +9,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.Getter;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -20,7 +18,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -120,5 +117,25 @@ public abstract class AbstractControllerTest <S extends AbstractEntity, T extend
     public void test_failure_getById() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get(path + UUID.randomUUID()))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+
+    // TODO: "create, update, and delete" test
+
+    @Test
+    public void test_success_create() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post(path, testObject))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    public void test_success_update() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.put(path, testObject))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    public void test_success_delete() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete(path + testObject.getId()))
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

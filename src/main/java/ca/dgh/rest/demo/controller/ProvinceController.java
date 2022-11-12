@@ -16,11 +16,11 @@ public class ProvinceController implements Controller<ProvinceDTO> {
     /**
      *
      */
-    private ProvinceService provinceService;
+    private final ProvinceService provinceService;
 
     /**
      *
-     * @param provinceService
+     * @param provinceService The service used to access {@link ProvinceDTO} objects in the service layer.
      */
     public ProvinceController(ProvinceService provinceService) {
         this.provinceService = provinceService;
@@ -75,7 +75,7 @@ public class ProvinceController implements Controller<ProvinceDTO> {
      * @param id object containing the information to be updated in the persistence layer.
      */
     @DeleteMapping("/{id}")
-    public void delete(UUID id) throws DataNotFoundException {
+    public void delete(@PathVariable("id") UUID id) throws DataNotFoundException {
         provinceService.delete(id);
     }
 }
