@@ -57,7 +57,7 @@ public class UserController implements Controller<UserDTO>{
      */
     @PostMapping("/")
     @Override
-    public UserDTO create(@Valid  UserDTO object) {
+    public UserDTO create(@RequestBody @Valid UserDTO object) {
         return userService.create(object);
     }
 
@@ -70,7 +70,7 @@ public class UserController implements Controller<UserDTO>{
      */
     @PutMapping("/")
     @Override
-    public UserDTO update(@Valid UserDTO object) throws DataNotFoundException {
+    public UserDTO update(@RequestBody @Valid UserDTO object) throws DataNotFoundException {
         return userService.update(object);
     }
 

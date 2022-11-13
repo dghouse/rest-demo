@@ -58,7 +58,7 @@ public class ProvinceController implements Controller<ProvinceDTO> {
      */
     @PostMapping("/")
     @Override
-    public ProvinceDTO create(@Valid ProvinceDTO object) {
+    public ProvinceDTO create(@RequestBody @Valid ProvinceDTO object) {
         return provinceService.create(object);
     }
 
@@ -70,7 +70,7 @@ public class ProvinceController implements Controller<ProvinceDTO> {
      */
     @PutMapping("/")
     @Override
-    public ProvinceDTO update(@Valid ProvinceDTO object) throws DataNotFoundException {
+    public ProvinceDTO update(@RequestBody @Valid ProvinceDTO object) throws DataNotFoundException {
         return provinceService.update(object);
     }
 
