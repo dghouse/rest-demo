@@ -32,6 +32,7 @@ public class ProvinceController implements Controller<ProvinceDTO> {
      * @return all objects available in the persistence layer.
      */
     @GetMapping("/")
+    @Override
     public List<ProvinceDTO> getAll() {
         return provinceService.getAll();
     }
@@ -43,6 +44,7 @@ public class ProvinceController implements Controller<ProvinceDTO> {
      * @return an object from the persistence layer that matches the given {@link UUID}.
      */
     @GetMapping("/{id}")
+    @Override
     public Optional<ProvinceDTO> getById(@PathVariable("id") UUID id) {
         return provinceService.getById(id);
     }
@@ -54,6 +56,7 @@ public class ProvinceController implements Controller<ProvinceDTO> {
      * @return the newly created object.
      */
     @PostMapping("/")
+    @Override
     public ProvinceDTO create(ProvinceDTO object) {
         return provinceService.create(object);
     }
@@ -65,6 +68,7 @@ public class ProvinceController implements Controller<ProvinceDTO> {
      * @return the newly updated object.
      */
     @PutMapping("/")
+    @Override
     public ProvinceDTO update(ProvinceDTO object) throws DataNotFoundException {
         return provinceService.update(object);
     }
@@ -75,6 +79,7 @@ public class ProvinceController implements Controller<ProvinceDTO> {
      * @param id object containing the information to be updated in the persistence layer.
      */
     @DeleteMapping("/{id}")
+    @Override
     public void delete(@PathVariable("id") UUID id) throws DataNotFoundException {
         provinceService.delete(id);
     }

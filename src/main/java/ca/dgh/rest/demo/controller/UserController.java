@@ -31,6 +31,7 @@ public class UserController implements Controller<UserDTO>{
      * @return all objects available in the persistence layer.
      */
     @GetMapping("/")
+    @Override
     public List<UserDTO> getAll() {
         return userService.getAll();
     }
@@ -42,6 +43,7 @@ public class UserController implements Controller<UserDTO>{
      * @return an object from the persistence layer that matches the given {@link UUID}.
      */
     @GetMapping("/{id}")
+    @Override
     public Optional<UserDTO> getById(@PathVariable("id") UUID id) {
         return userService.getById(id);
     }
@@ -53,6 +55,7 @@ public class UserController implements Controller<UserDTO>{
      * @return the newly created object.
      */
     @PostMapping("/")
+    @Override
     public UserDTO create(UserDTO object) {
         return userService.create(object);
     }
@@ -65,6 +68,7 @@ public class UserController implements Controller<UserDTO>{
      * @throws DataNotFoundException thrown when the give object is not found.
      */
     @PutMapping("/")
+    @Override
     public UserDTO update(UserDTO object) throws DataNotFoundException {
         return userService.update(object);
     }
@@ -76,6 +80,7 @@ public class UserController implements Controller<UserDTO>{
      * @throws DataNotFoundException thrown when the give object is not found.
      */
     @DeleteMapping("/{id}")
+    @Override
     public void delete(@PathVariable("id") UUID id) throws DataNotFoundException {
         userService.delete(id);
     }
