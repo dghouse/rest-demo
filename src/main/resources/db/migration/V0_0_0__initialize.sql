@@ -15,29 +15,29 @@ CREATE TABLE APP_USER(
     FOREIGN KEY (PROVINCE_ID) REFERENCES LK_PROVINCE(ID)
 );
 
-INSERT INTO LK_PROVINCE (NAME_EN, NAME_FR)
-VALUES ('Alberta', 'Alberta');
-INSERT INTO LK_PROVINCE (NAME_EN, NAME_FR)
-VALUES ('British Columbia', 'Colombie-Britannique');
-INSERT INTO LK_PROVINCE (NAME_EN, NAME_FR)
-VALUES ('Manitoba', 'Manitoba');
-INSERT INTO LK_PROVINCE (NAME_EN, NAME_FR)
-VALUES ('New Brunswick', 'Nouveau-Brunswick');
-INSERT INTO LK_PROVINCE (NAME_EN, NAME_FR)
-VALUES ('Newfoundland and Labrador', 'Terre-Neuve-et-Labrador');
-INSERT INTO LK_PROVINCE (NAME_EN, NAME_FR)
-VALUES ('Northwest Territories', 'Territoires du Nord-Ouest');
-INSERT INTO LK_PROVINCE (NAME_EN, NAME_FR)
-VALUES ('Nova Scotia', 'Nouvelle-Écosse');
-INSERT INTO LK_PROVINCE (NAME_EN, NAME_FR)
-VALUES ('Nunavut', 'Nunavut');
-INSERT INTO LK_PROVINCE (NAME_EN, NAME_FR)
-VALUES ('Ontario', 'Ontario');
-INSERT INTO LK_PROVINCE (NAME_EN, NAME_FR)
-VALUES ('Prince Edward Island', 'île-du-Prince-Édouard');
-INSERT INTO LK_PROVINCE (NAME_EN, NAME_FR)
-VALUES ('Quebec', 'Québec');
-INSERT INTO LK_PROVINCE (NAME_EN, NAME_FR)
-VALUES ('Saskatchewan', 'Saskatchewan');
-INSERT INTO LK_PROVINCE (NAME_EN, NAME_FR)
-VALUES ('Yukon', 'Yukon');
+INSERT INTO LK_PROVINCE (CODE, NAME_EN, NAME_FR)
+VALUES ('AB', 'Alberta', 'Alberta');
+INSERT INTO LK_PROVINCE (CODE, NAME_EN, NAME_FR)
+VALUES ('BC', 'British Columbia', 'Colombie-Britannique');
+INSERT INTO LK_PROVINCE (CODE, NAME_EN, NAME_FR)
+VALUES ('MB', 'Manitoba', 'Manitoba');
+INSERT INTO LK_PROVINCE (CODE, NAME_EN, NAME_FR)
+VALUES ('NB', 'New Brunswick', 'Nouveau-Brunswick');
+INSERT INTO LK_PROVINCE (CODE, NAME_EN, NAME_FR)
+VALUES ('NL', 'Newfoundland and Labrador', 'Terre-Neuve-et-Labrador');
+INSERT INTO LK_PROVINCE (CODE, NAME_EN, NAME_FR)
+VALUES ('NT', 'Northwest Territories', 'Territoires du Nord-Ouest');
+INSERT INTO LK_PROVINCE (CODE, NAME_EN, NAME_FR)
+VALUES ('NS', 'Nova Scotia', 'Nouvelle-Écosse');
+INSERT INTO LK_PROVINCE (CODE, NAME_EN, NAME_FR)
+VALUES ('NU', 'Nunavut', 'Nunavut');
+INSERT INTO LK_PROVINCE (CODE, NAME_EN, NAME_FR)
+VALUES ('ON', 'Ontario', 'Ontario');
+INSERT INTO LK_PROVINCE (CODE, NAME_EN, NAME_FR)
+VALUES ('PE', 'Prince Edward Island', 'île-du-Prince-Édouard');
+INSERT INTO LK_PROVINCE (CODE, NAME_EN, NAME_FR)
+VALUES ('QC', 'Quebec', 'Québec');
+INSERT INTO LK_PROVINCE (CODE, NAME_EN, NAME_FR)
+VALUES ('SK', 'Saskatchewan', 'Saskatchewan');
+INSERT INTO LK_PROVINCE (CODE, NAME_EN, NAME_FR)
+VALUES ('YT', 'Yukon', 'Yukon');

@@ -5,6 +5,7 @@ import ca.dgh.rest.demo.model.dto.UserDTO;
 import ca.dgh.rest.demo.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -56,7 +57,7 @@ public class UserController implements Controller<UserDTO>{
      */
     @PostMapping("/")
     @Override
-    public UserDTO create(UserDTO object) {
+    public UserDTO create(@Valid  UserDTO object) {
         return userService.create(object);
     }
 
@@ -69,7 +70,7 @@ public class UserController implements Controller<UserDTO>{
      */
     @PutMapping("/")
     @Override
-    public UserDTO update(UserDTO object) throws DataNotFoundException {
+    public UserDTO update(@Valid UserDTO object) throws DataNotFoundException {
         return userService.update(object);
     }
 

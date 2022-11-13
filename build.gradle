@@ -29,6 +29,9 @@ dependencies {
 	//Monitoring
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
 
+	// SpringDoc OpenApi
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.12'
+
 	// https://mvnrepository.com/artifact/org.projectlombok/lombok
 	implementation 'org.projectlombok:lombok:1.18.24'
 

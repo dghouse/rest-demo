@@ -5,6 +5,7 @@ import ca.dgh.rest.demo.model.dto.ProvinceDTO;
 import ca.dgh.rest.demo.service.ProvinceService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -57,7 +58,7 @@ public class ProvinceController implements Controller<ProvinceDTO> {
      */
     @PostMapping("/")
     @Override
-    public ProvinceDTO create(ProvinceDTO object) {
+    public ProvinceDTO create(@Valid ProvinceDTO object) {
         return provinceService.create(object);
     }
 
@@ -69,7 +70,7 @@ public class ProvinceController implements Controller<ProvinceDTO> {
      */
     @PutMapping("/")
     @Override
-    public ProvinceDTO update(ProvinceDTO object) throws DataNotFoundException {
+    public ProvinceDTO update(@Valid ProvinceDTO object) throws DataNotFoundException {
         return provinceService.update(object);
     }
 
