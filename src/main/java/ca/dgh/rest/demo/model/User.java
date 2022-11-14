@@ -19,10 +19,10 @@ public class User implements AbstractEntity {
     private String lastName;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="provice_id", updatable = false, insertable = false)
+    @JoinColumn(name="province_id", updatable = false, insertable = false)
     private Province province;
 
-    @Column(name="provice_id")
+    @Column(name="province_id")
     private UUID provinceId;
 
 }
