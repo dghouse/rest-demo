@@ -4,7 +4,7 @@ import ca.dgh.rest.demo.TestFactory;
 import ca.dgh.rest.demo.mapper.ModelMapperConfiguration;
 import ca.dgh.rest.demo.model.Province;
 import ca.dgh.rest.demo.model.dto.ProvinceDTO;
-import ca.dgh.rest.demo.repository.ProductRepository;
+import ca.dgh.rest.demo.repository.ProvinceRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -13,7 +13,7 @@ import org.modelmapper.ModelMapper;
 public class ProvinceServiceTest extends AbstractDTOAwareServiceTest<Province, ProvinceDTO>{
 
     @Mock
-    private ProductRepository productRepository;
+    private ProvinceRepository productRepository;
 
     @BeforeEach
     public void setup() {
