@@ -11,6 +11,7 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.Getter;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -76,7 +77,7 @@ public abstract class AbstractControllerTest <S extends AbstractEntity, T extend
                 .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
 
         ObjectMapper mapper = new XmlMapper();
-        List<JsonNode> returnedList = mapper.readValue(mvcResult.getResponse().getContentAsString(), new TypeReference<List<JsonNode>>() {});
+        List<JsonNode> returnedList = mapper.readValue(mvcResult.getResponse().getContentAsString(), new TypeReference<>() {});
 
         assert returnedList.size() == 1;
         compare(testObject, returnedList.get(0));
@@ -95,7 +96,7 @@ public abstract class AbstractControllerTest <S extends AbstractEntity, T extend
     }
 
     /**
-     * Test that when a user requests an animal condition given a valid UUID, they actually get that object.
+     * Test that when a user requests an object given a valid UUID, they actually get that object.
      * @throws Exception thrown when trying to perform the call to the {@link MockMvc} object.
      */
     @Test
@@ -103,13 +104,13 @@ public abstract class AbstractControllerTest <S extends AbstractEntity, T extend
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get(path + testObject.getId()))
                 .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
         ObjectMapper mapper = new XmlMapper();
-        JsonNode returnedObject = mapper.readValue(mvcResult.getResponse().getContentAsString(), new TypeReference<JsonNode>() {});
+        JsonNode returnedObject = mapper.readValue(mvcResult.getResponse().getContentAsString(), new TypeReference<>() {});
         assert returnedObject != null;
         compare(testObject, returnedObject);
     }
 
     /**
-     * If the user requests an animal-condition that does not exit, they should get a "file not found" message. This
+     * If the user requests an object that does not exit, they should get a "file not found" message. This
      * also exercises the logic in the {@link EmptyOptionalResponseControllerAdvice}.
      * @throws Exception thrown when trying to perform the call to the {@link MockMvc} object.
      */
@@ -119,23 +120,49 @@ public abstract class AbstractControllerTest <S extends AbstractEntity, T extend
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
-    // TODO: "create, update, and delete" test
-
+    /**
+     * If a user attempts to call the create endpoint with a valid object, then that should be successful.
+     * @throws Exception thrown when something goes wrong calling the {@link Mockito} perform method.
+     */
     @Test
     public void test_success_create() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post(path, testObject))
+        mockMvc.perform(MockMvcRequestBuilders.post(path).contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(testObject)))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
+    /**
+     * If a user calls update using a valid object, then that should be successful.
+     * @throws Exception thrown when something goes wrong calling the {@link Mockito} perform method.
+     */
     @Test
     public void test_success_update() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.put(path, testObject))
+        mockMvc.perform(MockMvcRequestBuilders.put(path).contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(testObject)))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
+    /**
+     * Test the successful deletion of an object through the controllers delete method.
+     * @throws Exception thrown when something goes wrong calling the {@link Mockito} perform method.
+     */
     @Test
     public void test_success_delete() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.delete(path + testObject.getId()))
                 .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    /**
+     * This method will convert an {@link Object} into an JSON string. The resulting object will be used to call controller
+     * methods that accept a given object.
+     * @param targetObject object to convert to JSON
+     * @return JSON representation of the given object.
+     */
+    private static String asJsonString(final Object targetObject) {
+        try {
+            return new ObjectMapper().writeValueAsString(targetObject);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
