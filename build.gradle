@@ -42,7 +42,7 @@ dependencies {
 	implementation ('org.modelmapper:modelmapper:3.1.0')
 
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
-	implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.0'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.1'
 
 	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.14.1'
 
