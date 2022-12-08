@@ -3,9 +3,9 @@ package ca.dgh.rest.demo.controller;
 import ca.dgh.rest.demo.exception.DataNotFoundException;
 import ca.dgh.rest.demo.model.dto.ProvinceDTO;
 import ca.dgh.rest.demo.service.ProvinceService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
