@@ -1,9 +1,10 @@
 package ca.dgh.rest.demo.model.dto;
 
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.Size;
+
 import java.util.UUID;
 
 @Getter
