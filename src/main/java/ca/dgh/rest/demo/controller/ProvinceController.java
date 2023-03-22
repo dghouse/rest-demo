@@ -20,7 +20,8 @@ public class ProvinceController implements Controller<ProvinceDTO> {
     private final ProvinceService provinceService;
 
     /**
-     *
+     * A one argument constructor that accepts a {@link ProvinceService}. This service is used
+     * to access {@link ca.dgh.rest.demo.model.Province} data in the persistence layer.
      * @param provinceService The service used to access {@link ProvinceDTO} objects in the service layer.
      */
     public ProvinceController(ProvinceService provinceService) {
@@ -32,7 +33,7 @@ public class ProvinceController implements Controller<ProvinceDTO> {
      *
      * @return all objects available in the persistence layer.
      */
-    @GetMapping("/")
+    @GetMapping
     @Override
     public List<ProvinceDTO> getAll() {
         return provinceService.getAll();
@@ -56,7 +57,7 @@ public class ProvinceController implements Controller<ProvinceDTO> {
      * @param object object containing the information to be persisted.
      * @return the newly created object.
      */
-    @PostMapping("/")
+    @PostMapping
     @Override
     public ProvinceDTO create(@RequestBody @Valid ProvinceDTO object) {
         return provinceService.create(object);
@@ -68,7 +69,7 @@ public class ProvinceController implements Controller<ProvinceDTO> {
      * @param object object containing the information to be updated in the persistence layer.
      * @return the newly updated object.
      */
-    @PutMapping("/")
+    @PutMapping
     @Override
     public ProvinceDTO update(@RequestBody @Valid ProvinceDTO object) throws DataNotFoundException {
         return provinceService.update(object);

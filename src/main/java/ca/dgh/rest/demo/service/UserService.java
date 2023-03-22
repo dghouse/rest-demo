@@ -17,11 +17,12 @@ public class UserService extends AbstractDTOAwareService<User, UserDTO> {
 
     /**
      * A one argument constructor that requires a repository that manages {@link User}.
-     * @param repository a repository that manages {@link User} objects.
+     *
+     * @param repository  a repository that manages {@link User} objects.
      * @param modelMapper the {@link ModelMapper} that will convert between the {@link User} and {@link UserDTO} classes.
      */
     public UserService(JpaRepository<User, UUID> repository,
                        @Qualifier("modelMapper") ModelMapper modelMapper) {
-        super (repository, modelMapper, User.class, UserDTO.class);
+        super(repository, modelMapper, User.class, UserDTO.class);
     }
 }

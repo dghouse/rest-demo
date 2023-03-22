@@ -60,12 +60,12 @@ abstract class AbstractDTOAwareServiceTest<S extends AbstractEntity, T extends A
      * ensure any mocked objects should be done in the child class.
      *
      * @param abstractDTOAwareService The instance of the {@link AbstractDTOAwareService} service to be tested.
-     * @param repository The mocked repository that will be used by the service.
-     * @param modelMapper The {@link ModelMapper} that will provide mapping capabilities between {@link AbstractEntity} and
-     *                    the {@link AbstractDTO} object.
-     * @param testEntity The test entity to use for this service.
-     * @param entityType The class type of the {@link AbstractEntity} object.
-     * @param dtoType The class type of the {@link AbstractDTO} object.
+     * @param repository              The mocked repository that will be used by the service.
+     * @param modelMapper             The {@link ModelMapper} that will provide mapping capabilities between {@link AbstractEntity} and
+     *                                the {@link AbstractDTO} object.
+     * @param testEntity              The test entity to use for this service.
+     * @param entityType              The class type of the {@link AbstractEntity} object.
+     * @param dtoType                 The class type of the {@link AbstractDTO} object.
      */
     void setup(AbstractDTOAwareService<S, T> abstractDTOAwareService, JpaRepository<S, UUID> repository,
                ModelMapper modelMapper, S testEntity, Class<S> entityType, Class<T> dtoType) {
@@ -150,6 +150,7 @@ abstract class AbstractDTOAwareServiceTest<S extends AbstractEntity, T extends A
 
     /**
      * Test that the delete method was called when a caller attempts to delete an object in the persistence layer.
+     *
      * @throws DataNotFoundException when no data has been found.
      */
     @Test

@@ -1,7 +1,7 @@
 plugins {
-	id 'org.springframework.boot' version '3.0.0'
-	id 'io.spring.dependency-management' version '1.1.0'
-	id 'java'
+    id 'org.springframework.boot' version '3.0.4'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id 'java'
 }
 
 group = 'ca.dfo.common'
@@ -9,45 +9,55 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-	// Database
-	// https://mvnrepository.com/artifact/com.h2database/h2
-	testImplementation 'com.h2database:h2:2.1.214'
 
-	// https://mvnrepository.com/artifact/org.flywaydb/flyway-core
-	implementation 'org.flywaydb:flyway-core'
+    // Database
+    // https://mvnrepository.com/artifact/com.h2database/h2
+    testImplementation 'com.h2database:h2:2.1.214'
 
-	runtimeOnly 'com.h2database:h2'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // https://mvnrepository.com/artifact/org.flywaydb/flyway-core
+    implementation 'org.flywaydb:flyway-core:9.16.1'
 
-	//Monitoring
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
 
-	// SpringDoc OpenApi
-	implementation 'org.springdoc:springdoc-openapi-ui:1.6.13'
+    runtimeOnly 'com.h2database:h2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-	// https://mvnrepository.com/artifact/org.projectlombok/lombok
-	implementation 'org.projectlombok:lombok:1.18.24'
+    // Monitoring
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:3.0.4'
 
-	annotationProcessor group: 'org.springframework.boot', name: 'spring-boot-configuration-processor'
-	annotationProcessor 'org.projectlombok:lombok:1.18.24'
-	testAnnotationProcessor'org.projectlombok:lombok:1.18.24'
+    // SpringDoc OpenApi
+    implementation 'org.springdoc:springdoc-openapi:2.0.4'
 
-	implementation ('org.modelmapper:modelmapper:3.1.0')
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    implementation 'org.projectlombok:lombok:1.18.24'
 
-	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
-	implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.1'
+    //annotationProcessor group: 'org.springframework.boot', name: 'spring-boot-configuration-processor'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-configuration-processor
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:3.0.4'
 
-	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.14.1'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    implementation('org.modelmapper:modelmapper:3.1.1')
+
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
+
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.14.2'
+
+    // https://mvnrepository.com/artifact/org.apache.poi/poi
+    implementation 'org.apache.poi:poi-ooxml:5.2.3'
 
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }

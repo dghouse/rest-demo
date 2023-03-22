@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-class ProvinceControllerTest extends AbstractControllerTest<Province, ProvinceDTO>{
+class ProvinceControllerTest extends AbstractControllerTest<Province, ProvinceDTO> {
 
     @Mock
     ProvinceService provinceService;
@@ -19,6 +19,6 @@ class ProvinceControllerTest extends AbstractControllerTest<Province, ProvinceDT
         super.setup(TestFactory.getProvinceDTO(),
                 new ProvinceController(provinceService),
                 provinceService,
-                "/api/province/" );
+                "/api/province/");
     }
 }

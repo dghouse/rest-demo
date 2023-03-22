@@ -21,7 +21,7 @@ public class EmptyOptionalResponseControllerAdvice implements ResponseBodyAdvice
     /**
      * This method tells the system that this advice applies to all controllers that return classes of type {@link Optional}.
      *
-     * @param returnType the return type.
+     * @param returnType    the return type.
      * @param converterType the selected converter type.
      * @return true if the given returnType passed to this advice is of type {@link Optional}.
      */
@@ -34,12 +34,12 @@ public class EmptyOptionalResponseControllerAdvice implements ResponseBodyAdvice
      * This method allows us to return an appropriate response if the underlying controller attempts to return an empty
      * {@link Optional} object.
      *
-     * @param body the body to be written
-     * @param returnType the return type of the controller method
-     * @param selectedContentType the content type selected through content negotiation
+     * @param body                  the body to be written
+     * @param returnType            the return type of the controller method
+     * @param selectedContentType   the content type selected through content negotiation
      * @param selectedConverterType the converter type selected to write to the response
-     * @param request the current request
-     * @param response the current response
+     * @param request               the current request
+     * @param response              the current response
      * @return the body that was passed in or a modified (possibly new) instance
      */
     @Override
