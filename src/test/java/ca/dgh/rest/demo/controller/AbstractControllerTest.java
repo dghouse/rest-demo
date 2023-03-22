@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public abstract class AbstractControllerTest <S extends AbstractEntity, T extends AbstractDTO> {
+public abstract class AbstractControllerTest<S extends AbstractEntity, T extends AbstractDTO> {
 
     /**
      * The testing object for MVC tests.
@@ -43,17 +43,17 @@ public abstract class AbstractControllerTest <S extends AbstractEntity, T extend
     /**
      * The mocked service that will provide objects to the controller object.
      */
-    private AbstractDTOAwareService<S,T> service;
+    private AbstractDTOAwareService<S, T> service;
 
     /**
      * This method will be executed before each test to set up global variables.
      *
      * @param testObject the test object to use for creating and updating. We expect this class to have a non-null id.
      * @param controller the controller that will allow us to do CRUD operations on the provided object.
-     * @param service a mocked service to be used by the controller to preform I/O operations.
-     * @param path relative root path where the endpoint is being served from. We expect this string to end with a "/".
+     * @param service    a mocked service to be used by the controller to preform I/O operations.
+     * @param path       relative root path where the endpoint is being served from. We expect this string to end with a "/".
      */
-    public void setup(T testObject, Controller<T> controller, AbstractDTOAwareService<S,T> service, String path) {
+    public void setup(T testObject, Controller<T> controller, AbstractDTOAwareService<S, T> service, String path) {
         // Here we check our test data for some basic details that may trip up a developer in the future.
         assert testObject.getId() != null;
         assert path.endsWith("/");
@@ -68,6 +68,7 @@ public abstract class AbstractControllerTest <S extends AbstractEntity, T extend
 
     /**
      * Attempt to get a list of all objects from the endpoint.
+     *
      * @throws Exception thrown when trying to perform the call to the {@link MockMvc} object.
      */
     @Test
@@ -77,7 +78,8 @@ public abstract class AbstractControllerTest <S extends AbstractEntity, T extend
                 .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
 
         ObjectMapper mapper = new XmlMapper();
-        List<JsonNode> returnedList = mapper.readValue(mvcResult.getResponse().getContentAsString(), new TypeReference<>() {});
+        List<JsonNode> returnedList = mapper.readValue(mvcResult.getResponse().getContentAsString(), new TypeReference<>() {
+        });
 
         assert returnedList.size() == 1;
         compare(testObject, returnedList.get(0));
@@ -88,15 +90,16 @@ public abstract class AbstractControllerTest <S extends AbstractEntity, T extend
      * {@link MockMvc} object.
      *
      * @param testObject The test object expected to be delivered by the controller.
-     * @param jsonNode The JSON node parsed from the {@link MvcResult}.
+     * @param jsonNode   The JSON node parsed from the {@link MvcResult}.
      */
-    public void compare (T testObject, JsonNode jsonNode) {
+    public void compare(T testObject, JsonNode jsonNode) {
         assert jsonNode.get("id").asText().equals(testObject.getId().toString());
 
     }
 
     /**
      * Test that when a user requests an object given a valid UUID, they actually get that object.
+     *
      * @throws Exception thrown when trying to perform the call to the {@link MockMvc} object.
      */
     @Test
@@ -104,7 +107,8 @@ public abstract class AbstractControllerTest <S extends AbstractEntity, T extend
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get(path + testObject.getId()))
                 .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
         ObjectMapper mapper = new XmlMapper();
-        JsonNode returnedObject = mapper.readValue(mvcResult.getResponse().getContentAsString(), new TypeReference<>() {});
+        JsonNode returnedObject = mapper.readValue(mvcResult.getResponse().getContentAsString(), new TypeReference<>() {
+        });
         assert returnedObject != null;
         compare(testObject, returnedObject);
     }
@@ -112,6 +116,7 @@ public abstract class AbstractControllerTest <S extends AbstractEntity, T extend
     /**
      * If the user requests an object that does not exit, they should get a "file not found" message. This
      * also exercises the logic in the {@link EmptyOptionalResponseControllerAdvice}.
+     *
      * @throws Exception thrown when trying to perform the call to the {@link MockMvc} object.
      */
     @Test
@@ -122,6 +127,7 @@ public abstract class AbstractControllerTest <S extends AbstractEntity, T extend
 
     /**
      * If a user attempts to call the create endpoint with a valid object, then that should be successful.
+     *
      * @throws Exception thrown when something goes wrong calling the {@link Mockito} perform method.
      */
     @Test
@@ -133,6 +139,7 @@ public abstract class AbstractControllerTest <S extends AbstractEntity, T extend
 
     /**
      * If a user calls update using a valid object, then that should be successful.
+     *
      * @throws Exception thrown when something goes wrong calling the {@link Mockito} perform method.
      */
     @Test
@@ -144,6 +151,7 @@ public abstract class AbstractControllerTest <S extends AbstractEntity, T extend
 
     /**
      * Test the successful deletion of an object through the controllers delete method.
+     *
      * @throws Exception thrown when something goes wrong calling the {@link Mockito} perform method.
      */
     @Test
@@ -155,6 +163,7 @@ public abstract class AbstractControllerTest <S extends AbstractEntity, T extend
     /**
      * This method will convert an {@link Object} into an JSON string. The resulting object will be used to call controller
      * methods that accept a given object.
+     *
      * @param targetObject object to convert to JSON
      * @return JSON representation of the given object.
      */

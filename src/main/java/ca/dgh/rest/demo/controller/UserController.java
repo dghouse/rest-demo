@@ -1,5 +1,7 @@
 package ca.dgh.rest.demo.controller;
 
+import ca.dgh.rest.demo.exception.ApiException;
+import ca.dgh.rest.demo.exception.ApiExceptionList;
 import ca.dgh.rest.demo.exception.DataNotFoundException;
 import ca.dgh.rest.demo.model.dto.UserDTO;
 import ca.dgh.rest.demo.service.DataFileService;
@@ -16,7 +18,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -24,7 +25,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/api/user")
-public class UserController implements Controller<UserDTO>{
+public class UserController implements Controller<UserDTO> {
 
     /**
      *
@@ -37,19 +38,19 @@ public class UserController implements Controller<UserDTO>{
     private final DataFileService dataFileService;
 
     /**
-     *
      * @param userService The service used to access {@link UserDTO} objects in the service layer.
      */
     public UserController(DataFileService dataFileService, UserService userService) {
         this.userService = userService;
         this.dataFileService = dataFileService;
     }
+
     /**
      * Get all objects available in the persistence layer.
      *
      * @return all objects available in the persistence layer.
      */
-    @GetMapping("/")
+    @GetMapping
     @Override
     public List<UserDTO> getAll() {
         return userService.getAll();
@@ -73,7 +74,7 @@ public class UserController implements Controller<UserDTO>{
      * @param object object containing the information to be persisted.
      * @return the newly created object.
      */
-    @PostMapping("/")
+    @PostMapping
     @Override
     public UserDTO create(@RequestBody @Valid UserDTO object) {
         return userService.create(object);
@@ -86,7 +87,7 @@ public class UserController implements Controller<UserDTO>{
      * @return the newly updated object.
      * @throws DataNotFoundException thrown when the give object is not found.
      */
-    @PutMapping("/")
+    @PutMapping
     @Override
     public UserDTO update(@RequestBody @Valid UserDTO object) throws DataNotFoundException {
         return userService.update(object);
@@ -103,6 +104,16 @@ public class UserController implements Controller<UserDTO>{
     public void delete(@PathVariable("id") UUID id) throws DataNotFoundException {
         userService.delete(id);
     }
+
+    /**
+     * Upload a Microsoft Excel spreadsheet that has users in it and populate the database with the data.
+     *
+     * @param multipartFile the file stream containing the data.
+     * @return the status of the upload
+     * @throws IOException thrown when there's a problem accessing the data stream.
+     * @throws ApiExceptionList thrown when there's a problem found in the data set.
+     * @throws ApiException thrown when there's a problem processing the data retrieved from the dataset.
+     */
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201"),
             @ApiResponse(responseCode = "400", content = @Content(mediaType = "application/json")),
@@ -113,7 +124,7 @@ public class UserController implements Controller<UserDTO>{
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Object> upload(
             @RequestPart("file") @Parameter(description = "File to store") MultipartFile multipartFile
-    ) throws IOException {
+    ) throws IOException, ApiExceptionList, ApiException {
         dataFileService.processDataFile(multipartFile.getInputStream());
         return new ResponseEntity<>(HttpStatus.OK);
     }

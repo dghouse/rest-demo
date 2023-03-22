@@ -10,7 +10,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
 
-public class ProvinceServiceTest extends AbstractDTOAwareServiceTest<Province, ProvinceDTO>{
+public class ProvinceServiceTest extends AbstractDTOAwareServiceTest<Province, ProvinceDTO> {
 
     @Mock
     private ProvinceRepository productRepository;

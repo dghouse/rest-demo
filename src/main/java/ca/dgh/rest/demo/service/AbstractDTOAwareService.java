@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 import static javax.management.timer.Timer.ONE_MINUTE;
 
-public abstract class AbstractDTOAwareService<S extends AbstractEntity,T extends AbstractDTO> {
+public abstract class AbstractDTOAwareService<S extends AbstractEntity, T extends AbstractDTO> {
     /**
      * The repository that will be used in this class to interact with the persistence layer.
      */
@@ -41,11 +41,12 @@ public abstract class AbstractDTOAwareService<S extends AbstractEntity,T extends
 
     /**
      * This one argument constructor accepts a repository that will be used to work with the persistence layer.
-     * @param repository the object that will provide an interface to the persistence layer.
-     * @param modelMapper the model mapper that will be used to convert between the S ({@link AbstractEntity}) and
-     *        T ({@link AbstractDTO}) objects.
+     *
+     * @param repository      the object that will provide an interface to the persistence layer.
+     * @param modelMapper     the model mapper that will be used to convert between the S ({@link AbstractEntity}) and
+     *                        T ({@link AbstractDTO}) objects.
      * @param entityClassType the DTO class type, used by the {@link ModelMapper}
-     * @param dtoClassType the entity class type, used by the {@link ModelMapper}
+     * @param dtoClassType    the entity class type, used by the {@link ModelMapper}
      */
     protected AbstractDTOAwareService(JpaRepository<S, UUID> repository, ModelMapper modelMapper,
                                       Class<S> entityClassType,
@@ -58,16 +59,18 @@ public abstract class AbstractDTOAwareService<S extends AbstractEntity,T extends
 
     /**
      * Get all objects that are available in the persistence layer for the generic type.
+     *
      * @return all objects of the generic type in the persistence layer.
      */
     @Cacheable(cacheResolver = CachingConfiguration.CACHE_RESOLVER_NAME)
     public List<T> getAll() {
         return this.repository.findAll().stream()
-                .map(o -> modelMapper.map(o, dtoClassType)).collect(Collectors.toList());
+                .map(o -> modelMapper.map(o, dtoClassType)).toList();
     }
 
     /**
      * Get an object from the persistence layer based on the given id.
+     *
      * @param id the ID of the target object.
      * @return an {@link Optional} of our generic type.
      */
@@ -83,6 +86,7 @@ public abstract class AbstractDTOAwareService<S extends AbstractEntity,T extends
 
     /**
      * Create an object in the persistence layer.
+     *
      * @param newObject the new object to persist.
      * @return the newly persisted object.
      */
@@ -94,6 +98,7 @@ public abstract class AbstractDTOAwareService<S extends AbstractEntity,T extends
 
     /**
      * Update a given object that exists in the database.
+     *
      * @param updatedObject Object containing new values to be persisted.
      * @return the object that has been updated.
      */
@@ -106,6 +111,7 @@ public abstract class AbstractDTOAwareService<S extends AbstractEntity,T extends
 
     /**
      * Delete the object from the persistence layer with the given id.
+     *
      * @param id the id of the object to delete.
      * @throws {@link DataNotFoundException} when an object cannot be found.
      */
@@ -118,7 +124,7 @@ public abstract class AbstractDTOAwareService<S extends AbstractEntity,T extends
     /**
      * Schedule the eviction of all entries from this cache.
      */
-    @Scheduled(fixedRate = 30*ONE_MINUTE)
+    @Scheduled(fixedRate = 30 * ONE_MINUTE)
     @CacheEvict(cacheResolver = CachingConfiguration.CACHE_RESOLVER_NAME, allEntries = true)
     public void clearCache() {
     }
