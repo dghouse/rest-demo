@@ -1,4 +1,4 @@
-# Tech List
+# Basic RESTFul Application
 
 1. Spring Boot
 2. SpringDoc
@@ -6,7 +6,6 @@
 4. JUnit
 5. ModelMapper
 6. Flyway
-7. Microsoft Excel Spreadsheet process with Apache POI
 
 This application is intended to demonstrate the integration of various server side technologies used to deliver a robust
 RESTFul service.
@@ -24,9 +23,19 @@ meant to be a guide of how it could be done.
 In the instance of the `ProvinceService.getProvinceByName` method I've tried to demonstrate "special case" that requires
 the class to extend the abstracted class and that it's ok to do that. 
 
+## How To Run
+
+This application requires Java 17 as a minimum. There is a Gradle wrapper 
+
+## Your Own Application
+
+If you are about to start a new RESTFul API and you like what you see, you may find it useful to clone this application 
+and remove or refactor what you don't need.
+
+You could also update you local application by adding this repository as a remote and then pull in updates as needed.
 
 
-## Potential Inclusions
+## Potential Future Inclusions
 
 It would be useful to include the following things:
 
