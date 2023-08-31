@@ -23,7 +23,7 @@ dependencies {
     testImplementation 'com.h2database:h2:2.2.220'
 
     // https://mvnrepository.com/artifact/org.flywaydb/flyway-core
-    implementation 'org.flywaydb:flyway-core:9.20.0'
+    implementation 'org.flywaydb:flyway-core:9.21.2'
 
 
     runtimeOnly 'com.h2database:h2'
