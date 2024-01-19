@@ -31,7 +31,7 @@ dependencies {
 
     // Monitoring
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator:3.1.3'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:3.2.1'
 
     // SpringDoc OpenApi
     implementation 'org.springdoc:springdoc-openapi:2.2.0'
